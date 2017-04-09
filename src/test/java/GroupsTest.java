@@ -14,8 +14,26 @@ public class GroupsTest {
 
     @Test
     public void myTests() {
-        assertEquals(Groups.groupCheck("()"), true);
-//        assertEquals(Groups.groupCheck("({"), false);
+        assertEquals( true,Groups.groupCheck("()"));
+        assertEquals( false,Groups.groupCheck("({"));
+    }
+
+    @Test
+    public void shouldRecognisePairOfConsequitiveOpenAndClosedSymbols() {
+        assertEquals( true,Groups.groupCheck("[]()"));
+        assertEquals( false,Groups.groupCheck("[()"));
+    }
+
+    @Test
+    public void shouldrecogniseSymbolPairsThatAreNonConsequetiveButNested() {
+        assertEquals( true,Groups.groupCheck("[()]"));
+        assertEquals( false,Groups.groupCheck("[()"));
+    }
+
+    @Test
+    public void shouldrecogniseSymbolPairsThatAreNonConsequetiveButNotNested() {
+        assertEquals( true,Groups.groupCheck("[()]"));
+        assertEquals( false,Groups.groupCheck("[(])"));
     }
 
 }
