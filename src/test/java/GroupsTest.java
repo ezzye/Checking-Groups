@@ -36,4 +36,19 @@ public class GroupsTest {
         assertEquals( false,Groups.groupCheck("[(])"));
     }
 
+    @Test
+    public void shouldrecogniseOpenGroups() {
+        assertEquals( true,Groups.groupCheck("({})"));
+        assertEquals( true,Groups.groupCheck("[[]()]"));
+        assertEquals( true,Groups.groupCheck("[{()}[{()}]]"));
+        assertEquals( true,Groups.groupCheck("<>"));
+        assertEquals( true,Groups.groupCheck(""));
+
+
+
+        assertEquals( false,Groups.groupCheck("{(})"));
+        assertEquals( false,Groups.groupCheck("([]"));
+        assertEquals( false,Groups.groupCheck("[])"));
+    }
+
 }

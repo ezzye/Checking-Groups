@@ -6,11 +6,11 @@ import java.util.Arrays;
  */
 public class Groups{
 
-    private static ArrayList<String> CLOSED_GROUPS= new ArrayList<String>(Arrays.asList("()","{}","[]"));
+    private static ArrayList<String> CLOSED_GROUPS= new ArrayList<String>(Arrays.asList("()","{}","[]","<>"));
 
 
     public static boolean groupCheck(String s){
-        if (doAllSymbolsPair(s)) {
+        if (s == "" || doAllSymbolsPair(s)) {
             return true;
         } else {
             return false;
@@ -53,7 +53,7 @@ public class Groups{
     }
 
     private static boolean isLastOpenItemNotMatchingPair(String item, ArrayList<String> lastOpenIten) {
-        return !CLOSED_GROUPS.contains(lastOpenIten.get(lastOpenIten.size()-1)+item);
+        return lastOpenIten.isEmpty() || !CLOSED_GROUPS.contains(lastOpenIten.get(lastOpenIten.size()-1)+item);
     }
 
 
